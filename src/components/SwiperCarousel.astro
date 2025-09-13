@@ -1,0 +1,60 @@
+---
+// Docs: https://swiperjs.com/element
+interface Props {
+  images?: string[];
+  imagesDesktop?: string[];
+  imagesMobile?: string[];
+  heightClass?: string;
+  autoplayMs?: number;
+  titulo?: string[];
+  frase?: string[];
+  textoBoton?: string[];
+}
+const props = Astro.props as Props;
+const images = props.images ?? [];
+const imagesDesktop = props.imagesDesktop ?? [];
+const imagesMobile = props.imagesMobile ?? [];
+const heightClass = props.heightClass ?? 'h-[280px] md:h-[480px]';
+const autoplayMs = props.autoplayMs ?? 4000;
+const titulos = props.titulo ?? [];
+const frases = props.frase ?? [];
+const textoBotones = props.textoBoton ?? [];
+
+const total = Math.max(imagesDesktop.length, imagesMobile.length, images.length);
+const slides = Array.from({ length: total }, (_, i) => ({
+  desktop: imagesDesktop[i] ?? images[i] ?? imagesMobile[i] ?? '',
+  mobile: imagesMobile[i] ?? images[i] ?? imagesDesktop[i] ?? '',
+})).filter((s) => s.desktop || s.mobile);
+ 
+---
+<div class={`relative w-full ${heightClass}`}>
+  <swiper-container
+    slides-per-view="1"
+    loop="true"
+    autoplay="true"
+    autoplay-delay={String(autoplayMs)}
+    autoplay-disable-on-interaction="false"
+    speed="700"
+    pagination="true"
+    pagination-clickable="true"
+    style="--swiper-pagination-color:#fff; --swiper-pagination-bullet-inactive-color:rgba(255,255,255,.5);"
+    class="block h-full"
+    effect="fade"
+  >
+    {slides.map((s, i) => (
+      <swiper-slide class="h-full w-full">
+        <picture>
+          {s.desktop && <source media="(min-width: 1024px)" srcset={s.desktop} />}
+          <img src={s.mobile || s.desktop} alt={`Slide ${i + 1}`} class="h-full w-full object-cover" loading={i === 0 ? 'eager' : 'lazy'} />
+        </picture>
+        <div class="absolute top-0 left-0 w-full h-full px-4 flex flex-col justify-end md:pb-10 pb-6 gap-2 md:ps-20 bg-gradient-to-t from-black/90 to-transparent">
+          <h2 class="text-white text-center md:text-start md:text-5xl text-xl font-bold">{titulos[i]}</h2>
+          <p class="text-white text-center md:text-start text-sm md:text-lg text-shadow-[2px_2px_2px_rgb(0_0_0_/_1)]">{frases[i]}</p>
+          <a href="#" class="text-white text-[12px] md:text-lg self-center md:self-start border-2 border-white w-fit md:px-4 md:py-2 px-2 py-1 rounded-lg">{textoBotones[i]}</a>
+        </div>
+      </swiper-slide>
+    ))}
+  </swiper-container>
+</div>
+
+

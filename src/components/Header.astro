@@ -1,0 +1,67 @@
+---
+// Header Prova con navegación responsive
+---
+<header class="bg-prova-red text-prova-light">
+  <div class="relative mx-auto max-w-7xl px-4 py-4 flex items-center justify-between">
+    <a href="/" class="font-bold tracking-wide text-xl">
+      <img
+        src="/assets/images/Logo.svg"
+        alt="Prova Logo"
+        class="aspect-[512/212.667] w-24 md:w-32 h-auto"
+      />
+    </a>
+
+    <!-- Botón móvil -->
+    <button
+      id="menu-button"
+      class="md:hidden inline-flex items-center justify-center rounded-md p-2 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-prova-gold"
+      aria-controls="primary-nav"
+      aria-expanded="false"
+      aria-label="Abrir menú"
+      type="button"
+    >
+      <!-- Icono menú -->
+      <svg class="icon-menu h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <!-- Icono cerrar -->
+      <svg class="icon-close h-6 w-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <!-- Navegación -->
+    <nav
+      id="primary-nav"
+      class="absolute left-0 right-0 top-full z-50 hidden flex-col gap-4 bg-prova-red/95 px-4 py-4 shadow-lg md:static md:z-auto md:flex md:flex-row md:bg-transparent md:p-0 md:shadow-none text-sm"
+    >
+      <a href="#productos" class="hover:text-prova-gold">Productos</a>
+      <a href="#nosotros" class="hover:text-prova-gold">Nosotros</a>
+      <a
+        href="https://wa.me/XXXXXXXXXXX"
+        class="inline-flex items-center rounded-md bg-prova-gold px-3 py-1.5 font-medium text-prova-dark hover:opacity-90 transition"
+      >
+        WhatsApp 1
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('menu-button');
+  const nav = document.getElementById('primary-nav');
+  if (btn && nav) {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      nav.classList.toggle('hidden');
+      nav.classList.toggle('flex');
+      const menuIcon = btn.querySelector('.icon-menu');
+      const closeIcon = btn.querySelector('.icon-close');
+      if (menuIcon && closeIcon) {
+        menuIcon.classList.toggle('hidden');
+        closeIcon.classList.toggle('hidden');
+      }
+    });
+  }
+</script>

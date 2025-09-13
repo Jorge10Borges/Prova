@@ -1,16 +1,165 @@
 ---
 
+import MainLayout from "../layouts/MainLayout.astro";
+import SwiperCarousel from "../components/SwiperCarousel.astro";
+import ProductCardSwiper from "../components/ProductCardSwiper.astro";
+
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout title="Prova">
+	<section class="">
+		<!-- Carousel principal -->
+    <SwiperCarousel
+      imagesDesktop={[
+        "/assets/images/carousel/slider-desktop-1.webp",
+        "/assets/images/carousel/slider-desktop-2.webp",
+        "/assets/images/carousel/slider-desktop-3.webp",
+      ]}
+      imagesMobile={[
+        "/assets/images/carousel/slider-mobil-1.webp",
+        "/assets/images/carousel/slider-mobil-2.webp",
+        "/assets/images/carousel/slider-mobil-3.webp",
+      ]}
+      autoplayMs={3500}
+      heightClass="h-[260px] sm:h-[320px] md:h-[480px]"
+      titulo={["Calidad que tu negocio merece", "Chorizo Carupanero Prova", "Tu negocio necesita esto"]}
+      frase={[
+        "Productos cárnicos elaborados con ingredientes de primera, listos para ofrecer sabor auténtico a tus clientes.",
+        "El sabor tradicional que no puede faltar en parrillas, asados y empanadas. Hecho con receta artesanal y selección rigurosa. ",
+        "Suministros al mayor con entrega rápida y variedad completa: chorizos, embutidos, morcillas y más. ",
+      ]}
+      textoBoton={["Más Información", "Más Información", "Más Información"]}
+    />
+  </section>
+  <section class="py-16 bg-prova-gold">
+		<!-- Lo que hace diferente a Prova -->
+    <div class="container mx-auto px-6 text-center">
+      <!-- Título -->
+      <h2 class="text-3xl md:text-4xl font-bold text-prova-red mb-4 tracking-tight">Lo que hace diferente a Prova</h2>
+      <p class="text-lg text-prova-dark max-w-3xl mx-auto mb-12 leading-relaxed">
+        No solo vendemos productos cárnicos, entregamos calidad, sabor y apoyo constante a tu negocio.
+      </p>
+
+      <!-- Grid de tarjetas -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 ">
+        <!-- Tarjeta 1: Calidad garantizada -->
+        <div class=" bg-white p-6 rounded-lg shadow-md border border-prova-red/20 transition-all duration-300 hover:shadow-xl hover:scale-105">
+          <div class="inline-flex items-center justify-center">
+            <img 
+							src="/assets/images/icons/icono-Calidad-garantizada.svg" 
+							alt="Calidad garantizada" 
+							srcset=""
+							class="w-14 h-14"
+						>
+          </div>
+          <h3 class="text-xl font-bold text-prova-dark mb-3">Ingredientes de primera</h3>
+          <p class="text-gray-700 leading-relaxed">
+            Todos nuestros productos son elaborados con materia prima seleccionada y procesos que garantizan sabor y frescura.
+          </p>
+        </div>
+
+        <!-- Tarjeta 2: Ideal para tu negocio -->
+        <div class="bg-white p-6 rounded-lg shadow-md border border-prova-red/20 transition-all duration-300 hover:shadow-xl hover:scale-105">
+          <div class="inline-flex items-center justify-center">
+            <img 
+							src="/assets/images/icons/icono-Ideal-para-tu-negocio.svg" 
+							alt="Ideal para tu negocio" 
+							srcset=""
+							class="w-14 h-14"
+						>
+          </div>
+          <h3 class="text-xl font-bold text-prova-dark mb-3">Venta al mayor</h3>
+          <p class="text-gray-700 leading-relaxed">
+            Suministramos a carnicerías, tiendas, panaderías y restaurantes con volúmenes ajustados a tus necesidades.
+          </p>
+        </div>
+
+        <!-- Tarjeta 3: Sabor tradicional -->
+        <div class="bg-white p-6 rounded-lg shadow-md border border-prova-red/20 transition-all duration-300 hover:shadow-xl hover:scale-105">
+          <div class="inline-flex items-center justify-center">
+            <img 
+							src="/assets/images/icons/icono-Sabor-tradicional.svg" 
+							alt="Sabor tradicional" 
+							srcset=""
+							class="w-14 h-14"
+						>
+          </div>
+          <h3 class="text-xl font-bold text-prova-dark mb-3">Hecho con tradición</h3>
+          <p class="text-gray-700 leading-relaxed">
+            Nuestras recetas, como el Chorizo Carupanero, mantienen el sabor auténtico que tus clientes buscan.
+          </p>
+        </div>
+
+        <!-- Tarjeta 4: Entrega confiable -->
+        <div class="bg-white p-6 rounded-lg shadow-md border border-prova-red/20 transition-all duration-300 hover:shadow-xl hover:scale-105">
+          <div class="inline-flex items-center justify-center">
+            <img 
+							src="/assets/images/icons/icono-Entrega-confiable.svg" 
+							alt="Entrega confiable" 
+							srcset=""
+							class="w-14 h-14"
+						>
+          </div>
+          <h3 class="text-xl font-bold text-prova-dark mb-3">Servicio rápido</h3>
+          <p class="text-gray-700 leading-relaxed">Trabajamos para que recibas tus pedidos a tiempo y en perfectas condiciones.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+	<section class="py-16">
+		<!-- Carousel de productos destacados -->
+    <div class="container mx-auto px-6">
+      <h2 class="text-2xl md:text-3xl font-bold text-prova-dark mb-6 tracking-tight">Productos destacados</h2>
+      <swiper-container
+        slides-per-view="auto"
+        space-between="16"
+        free-mode="true"
+        grab-cursor="true"
+        class="block w-full"
+      >
+        <swiper-slide class="!w-[200px] md:!w-[300px]">
+          <ProductCardSwiper
+            image="/assets/images/productos/slider/prova_marketve_1753831593_3687729149080190637_44413200138.webp"
+            titulo="Chorizo Carupanero Prova"
+            frase="Sabor tradicional para parrillas, asados y empanadas."
+            textoBoton="Más Información"
+          />
+        </swiper-slide>
+        <swiper-slide class="!w-[200px] md:!w-[300px]">
+          <ProductCardSwiper
+            image="/assets/images/productos/slider/prova_marketve_1753831593_3687729149088397374_44413200138.webp"
+            titulo="Morcilla Carupanera"
+            frase="Receta tradicional, perfecta para desayunos o parrillas."
+            textoBoton="Detalles"
+          />
+        </swiper-slide>
+        <swiper-slide class="!w-[200px] md:!w-[300px]">
+          <ProductCardSwiper
+            image="/assets/images/productos/slider/prova_marketve_1753831593_3687729149088402344_44413200138.webp"
+            titulo="Chorizo Parrillero"
+            frase="Ideal para tu negocio: sabor, textura y rendimiento."
+            textoBoton="Ver más"
+          />
+        </swiper-slide>
+        <swiper-slide class="!w-[200px] md:!w-[300px]">
+          <ProductCardSwiper
+            image="/assets/images/productos/slider/prova_marketve_1753831593_3687729149088517583_44413200138.webp"
+            titulo="Salchicha Ahumada"
+            frase="Ahumado equilibrado y excelente presentación."
+            textoBoton="Conocer"
+          />
+        </swiper-slide>
+        <swiper-slide class="!w-[200px] md:!w-[300px]">
+          <ProductCardSwiper
+            image="/assets/images/productos/slider/prova_marketve_1753831593_3687729149097005258_44413200138.webp"
+            titulo="Salchichón Especial"
+            frase="Calidad constante y fácil rotación en anaquel."
+            textoBoton="Más Info"
+          />
+        </swiper-slide>
+      </swiper-container>
+    </div>
+  </section>
+
+</MainLayout>

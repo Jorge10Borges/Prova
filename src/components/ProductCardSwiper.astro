@@ -1,0 +1,43 @@
+---
+// Componente de Card minimal para Swiper o grillas
+interface Props {
+  image?: string;
+  titulo?: string;
+  frase?: string;
+  textoBoton?: string;
+}
+const props = Astro.props as Props;
+const image = props.image ?? '';
+const titulo = props.titulo ?? '';
+const frase = props.frase ?? '';
+const textoBoton = props.textoBoton ?? 'Información';
+---
+
+<article class="inline-block align-top">
+  <!-- Imagen con ancho fijo 200px via Tailwind -->
+  {image && (
+    <img
+      src={image}
+      alt={titulo || 'Imagen del producto'}
+      class="block w-full h-auto object-cover shrink-0"
+      loading="lazy"
+    />
+  )}
+
+  <!-- Contenido opcional -->
+  {(titulo || frase || textoBoton) && (
+    <div class="mt-3 w-full">
+      {titulo && (
+        <h3 class="text-sm md:text-base font-semibold text-prova-dark leading-snug">{titulo}</h3>
+      )}
+      {frase && <p class="mt-1 text-xs md:text-sm text-gray-700 leading-relaxed">{frase}</p>}
+      {textoBoton && (
+        <div class="pt-2">
+          <a href="#" class="inline-flex items-center gap-2 text-[12px] md:text-sm px-3 py-1.5 rounded-md border border-prova-red text-prova-red hover:bg-prova-red hover:text-white transition">
+            {textoBoton}
+          </a>
+        </div>
+      )}
+    </div>
+  )}
+</article>

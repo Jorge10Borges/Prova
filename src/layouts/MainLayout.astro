@@ -1,0 +1,50 @@
+---
+import '../styles/global.css';
+import Header from "../components/Header.astro";
+import SwiperRegister from "../components/SwiperRegister.astro";
+interface Props {
+  title?: string;
+}
+const { title = 'Prova' } = Astro.props as Props;
+---
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/Logo.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+
+    <meta property="og:title" content="Prova - Productos Cárnicos de Calidad al Mayor">
+    <meta property="og:description" content="Chorizos, embutidos y productos cárnicos de cerdo de primera calidad. Ideal para tiendas, carnicerías y restaurantes. ¡Haz tu pedido por WhatsApp!">
+    <meta property="og:url" content="https://www.provacarnicos.com.ve">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_VE">
+
+    <!-- Imagen OG (destacada) -->
+    <meta property="og:image" content="https://www.provacarnicos.com.ve/images/og-preview.jpg">
+    <meta property="og:image:alt" content="Catálogo de productos Prova: Chorizo Carupanero, Morcilla, Espalda Ahumada y más">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+
+    <!-- Sitio (opcional pero recomendado) -->
+    <meta property="og:site_name" content="Prova Carnes">
+    <meta property="og:see_also" content="https://www.instagram.com/carnicos_prova">
+
+    <!-- WhatsApp / Facebook preview -->
+    <meta property="fb:app_id" content=""> <!-- Opcional, si tienes app registrada -->
+    
+    <!-- CSS compilado por Tailwind CLI -->
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    
+    <!-- Registro de Swiper Element vía npm -->
+    <SwiperRegister />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
