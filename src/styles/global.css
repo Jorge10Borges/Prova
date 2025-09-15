@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+@theme {
+  --color-prova-red: #C40000;
+  --color-prova-gold: #FFD700;
+  --color-prova-dark: #000000;
+  --color-prova-light: #FFFFFF;
+}

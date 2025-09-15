@@ -1,4 +1,19 @@
 ---
 // Componente que registra los Web Components de Swiper (sin CDN)
 ---
-<script type="module" src="/src/scripts/swiper-element.ts"></script>
+<script>
+	import { register } from 'swiper/element/bundle';
+  
+		if (!(window as any).__swiper_el_loaded) {
+			register();
+			(window as any).__swiper_el_loaded = true;
+		}
+
+	// Idempotencia en navegaciones parciales (si se usan)
+		document.addEventListener('astro:before-swap', () => {
+			(window as any).__swiper_el_loaded = true;
+		});
+		document.addEventListener('astro:after-swap', () => {
+			(window as any).__swiper_el_loaded = true;
+		});
+</script>

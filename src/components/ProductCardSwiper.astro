@@ -5,35 +5,93 @@ interface Props {
   titulo?: string;
   frase?: string;
   textoBoton?: string;
+  // Datos enriquecidos opcionales
+  presentacion?: string; // p.ej. "Paquete 1kg (10 unidades)"
+  ingredientes?: string; // lista simple
+  usos?: string; // usos recomendados
+  almacenamiento?: string; // conservación/temperatura
+  sku?: string;
+  peso?: string;
+  origen?: string;
+  categoria?: string;
+  vidaUtil?: string; // vida útil
+  alergenos?: string;
+  preparacion?: string;
 }
 const props = Astro.props as Props;
 const image = props.image ?? '';
 const titulo = props.titulo ?? '';
 const frase = props.frase ?? '';
 const textoBoton = props.textoBoton ?? 'Información';
+// Enriquecidos
+const presentacion = props.presentacion ?? '';
+const ingredientes = props.ingredientes ?? '';
+const usos = props.usos ?? '';
+const almacenamiento = props.almacenamiento ?? '';
+const sku = props.sku ?? '';
+const peso = props.peso ?? '';
+const origen = props.origen ?? '';
+const categoria = props.categoria ?? '';
+const vidaUtil = props.vidaUtil ?? '';
+const alergenos = props.alergenos ?? '';
+const preparacion = props.preparacion ?? '';
 ---
 
-<article class="inline-block align-top">
+<article class="inline-block align-top border-4 border-gray-200 rounded-xl  p-4 overflow-hidden shadow-md bg-white hover:shadow-md transition w-full">
   <!-- Imagen con ancho fijo 200px via Tailwind -->
   {image && (
     <img
+            data-presentacion={presentacion}
+            data-ingredientes={ingredientes}
+            data-usos={usos}
+            data-almacenamiento={almacenamiento}
+            data-sku={sku}
+            data-peso={peso}
+            data-origen={origen}
+            data-categoria={categoria}
+            data-vida-util={vidaUtil}
+            data-alergenos={alergenos}
+            data-preparacion={preparacion}
       src={image}
       alt={titulo || 'Imagen del producto'}
-      class="block w-full h-auto object-cover shrink-0"
+      class="block w-full h-auto object-cover shrink-0 rounded-t-md"
       loading="lazy"
     />
   )}
 
   <!-- Contenido opcional -->
   {(titulo || frase || textoBoton) && (
-    <div class="mt-3 w-full">
+    <div class="p-2 w-full bg-prova-gold rounded-b-lg">
       {titulo && (
-        <h3 class="text-sm md:text-base font-semibold text-prova-dark leading-snug">{titulo}</h3>
+        <h3 class="text-sm md:text-base font-semibold text-prova-dark leading-snug truncate">{titulo}</h3>
       )}
-      {frase && <p class="mt-1 text-xs md:text-sm text-gray-700 leading-relaxed">{frase}</p>}
+      {frase && (
+        <p class="mt-1 text-xs md:text-sm text-black/90 leading-snug line-clamp-2">
+          {frase}
+        </p>
+      )}
       {textoBoton && (
         <div class="pt-2">
-          <a href="#" class="inline-flex items-center gap-2 text-[12px] md:text-sm px-3 py-1.5 rounded-md border border-prova-red text-prova-red hover:bg-prova-red hover:text-white transition">
+          <a
+            href="#"
+            data-open-product-modal
+            data-image={image}
+            data-title={titulo}
+            data-desc={frase}
+            data-whatsapp={`https://wa.me/584124391700?text=${encodeURIComponent(`Hola Prova, me interesa ${titulo}.`)}`}
+            data-presentacion={presentacion}
+            data-ingredientes={ingredientes}
+            data-usos={usos}
+            data-almacenamiento={almacenamiento}
+            data-sku={sku}
+            data-peso={peso}
+            data-origen={origen}
+            data-categoria={categoria}
+            data-vida-util={vidaUtil}
+            data-alergenos={alergenos}
+            data-preparacion={preparacion}
+            class="inline-flex items-center gap-2 text-[12px] md:text-sm px-3 py-1.5 rounded-md border border-prova-red text-prova-red hover:bg-prova-red hover:text-white transition"
+          >
             {textoBoton}
           </a>
         </div>
